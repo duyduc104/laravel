@@ -1,3 +1,6 @@
+@extends('app')
+
+@section('content')
 <h1>Bảng Cờ Vua {{ $n }} x {{ $n }}</h1>
 <table border="1" cellpadding="10">
     @for ($i = 0; $i < $n; $i++)
@@ -12,3 +15,4 @@
         </tr>
     @endfor
 </table>
+@endsection
