@@ -9,6 +9,22 @@
 </head>
 <body>
 
+    <nav class="navbar navbar-light bg-light mb-4">
+        <div class="container">
+            <span class="navbar-text">
+                @if(session()->has('age'))
+                    Tuổi: <strong>{{ session('age') }}</strong>
+                @endif
+            </span>
+
+            @if(session()->has('age'))
+                <a href="{{ route('logout') }}" class="btn btn-outline-danger btn-sm">
+                    Logout
+                </a>
+            @endif
+        </div>
+    </nav>
+
     <div class="container mt-5">
         @yield('content')
     </div>

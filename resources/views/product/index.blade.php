@@ -2,6 +2,16 @@
 
 @section('content')
 <h1>{{ $title }}</h1>
+@if(session('age') >= 18)
+    <div class="alert alert-success">
+        Bạn {{ session('age') }} tuổi – Được phép truy cập
+    </div>
+@else
+    <div class="alert alert-danger">
+        Không đủ tuổi
+    </div>
+@endif
+
 <table border="1" cellpadding="10" class="table table-bordered">
     <tr>
         <th>ID</th>

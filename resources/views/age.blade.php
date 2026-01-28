@@ -7,7 +7,11 @@
 </head>
 <body>
 <h2>Nhập tuổi của bạn</h2>
-
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 <form method="POST" action="{{ route('age.check') }}">
     @csrf
     Tuổi: <input type="text" name="age">

@@ -34,6 +34,11 @@ Route::middleware([checkTimeAccess::class, checkAge::class])->group(function () 
         });
     });
 });
+Route::get('/logout', function () {
+    session()->forget(['age']); 
+    return redirect()->route('signIn');   
+})->name('logout');
+
 Route::get(('/sinhvien/{name?}/{mssv?}'), function ($name = 'Luong Xuan Hieu', $mssv = '123456') {
     return "
         <h1>Thông tin sinh viên</h1>
@@ -48,3 +53,4 @@ Route::fallback(function () {
     return response()->view('error.404', [], 404);
 });
 Route::resource('tests', testController::class);
+
