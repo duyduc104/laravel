@@ -3,30 +3,35 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\testController;
+use App\Http\Middleware\checkTimeAccess;
+use App\Http\Middleware\checkAge;
+use App\Http\Controllers\AgeController;
+
 Route::get('/', function () {
+
     return view('welcome');
 })->name('welcome');
-Route::prefix('product')->group(function () {
-    Route::controller(ProductController::class)->group(function () {
-        Route::get('/', 'index')->name('product.index');
-        Route::get('/detail/{id?}', 'detail')->name('product.detail');
-        Route::get('/add', 'add')->name('product.add');
-        Route::post('/store', 'store')->name('product.store');
-    });
-    // Route::get('/', [ProductController::class, 'index'])->name('product.index');
-    // Route::get('/detail/{id?}', [ProductController::class, 'detail'])->name('product.detail');
-//     Route::get('/add', function () {
-//         return view('product.add');
-//     })->name('product.add');
-//     Route::get('/id/{id?}', function ($id = '123') {
-
-//         return "Chi tiết sản phẩm có ID = $id";
-//     })->where('id', '[A-Za-z0-9]+');
-});
+// 1. Nhóm KHÔNG CẦN check tuổi (Trang chủ, Login, Register)
+Route::get('/age', [AgeController::class, 'age'])->name('age');
+Route::post('/age', [AgeController::class, 'checkAge'])->name('age.check');
 Route::prefix('auth')->group(function () {
     Route::controller(AuthController::class)->group(function () {
-        Route::post('/login', 'login')->name('auth.login');
+        Route::get('/signIn', 'signIn')->name('signIn');
+        Route::post('/signIn', 'checkSignIn')->name('check.signIn');
         Route::post('/register', 'register')->name('auth.register');
+    });
+});
+
+// 2. Nhóm BẮT BUỘC check tuổi và thời gian
+Route::middleware([checkTimeAccess::class, checkAge::class])->group(function () {
+    Route::prefix('product')->group(function () {
+        Route::controller(ProductController::class)->group(function () {
+            Route::get('/', 'index')->name('product.index');
+            Route::get('/detail/{id?}', 'detail')->name('product.detail');
+            Route::get('/add', 'add')->name('product.add');
+            Route::post('/store', 'store')->name('product.store');
+        });
     });
 });
 Route::get(('/sinhvien/{name?}/{mssv?}'), function ($name = 'Luong Xuan Hieu', $mssv = '123456') {
@@ -42,3 +47,4 @@ Route::get('/chessboard/{n?}', function ($n) {
 Route::fallback(function () {
     return response()->view('error.404', [], 404);
 });
+Route::resource('tests', testController::class);

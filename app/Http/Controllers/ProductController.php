@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use App\Http\Middleware\checkTimeAccess;
 
-class ProductController extends Controller
+class ProductController extends Controller implements HasMiddleware
 {
+    // add các middleware cho controller
+    public static function middleware(): array
+    {
+        return [
+            checkTimeAccess::class,
+        ];
+    }
     public function index()
     {
         $title = 'Sản phẩm của chúng tôi';
