@@ -27,10 +27,12 @@ Route::prefix('auth')->group(function () {
 Route::middleware([checkTimeAccess::class, checkAge::class])->group(function () {
     Route::prefix('product')->group(function () {
         Route::controller(ProductController::class)->group(function () {
-            Route::get('/', 'index')->name('product.index');
+            Route::get('/', 'indexadmin')->name('product.index');
             Route::get('/detail/{id?}', 'detail')->name('product.detail');
-            Route::get('/add', 'add')->name('product.add');
+            Route::get('/add', 'create')->name('product.add');
             Route::post('/store', 'store')->name('product.store');
+            Route::get('/edit/{id}', 'edit')->name('product.edit');
+            Route::put('/update/{id}', 'update')->name('product.update');
         });
     });
 });
@@ -54,3 +56,6 @@ Route::fallback(function () {
 });
 Route::resource('tests', testController::class);
 
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/admin', 'index')->name('layouts.admin');
+});

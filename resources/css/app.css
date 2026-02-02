@@ -1,3 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+    background-color: #f4f7fa;
+    font-family: "Inter", sans-serif;
+}
+
+/* Gradient cho nút bấm chính */
+.btn-primary-gradient {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+.btn-primary-gradient:hover {
+    transform: scale(1.05);
+    color: white;
+}
+
+/* Thiết kế Card cao cấp */
+.product-card {
+    background: #ffffff;
+    border-radius: 24px; /* Bo góc cực đại */
+    box-shadow: 0 10px 30px rgba(130, 140, 180, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+}
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Phần ID chuyên nghiệp */
+.card-header-custom {
+    padding: 20px 20px 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+.id-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #adb5bd;
+    background: #f8f9fa;
+    padding: 4px 10px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tiêu đề Navy */
+.text-navy {
+    color: #1a237e;
+}
+.card-title a {
+    color: inherit;
+    transition: 0.3s;
+}
+.card-title a:hover {
+    color: #4facfe;
+}
+
+/* Box giá tiền */
+.price-box .text-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: #9e9e9e;
+    letter-spacing: 0.5px;
+}
+.price-value {
+    font-size: 1.4rem;
+    letter-spacing: -0.5px;
+}
+.stock-value {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Nút hành động */
+.btn-action {
+    padding: 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+.btn-edit:hover {
+    background: #f0f7ff;
+    color: #007bff;
+    border-color: #007bff;
+}
+.btn-delete:hover {
+    background: #fff5f5;
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Alert Premium */
+.alert-premium {
+    background: #ffffff;
+    border: none;
+    border-left: 6px solid #4facfe;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+.icon-box {
+    width: 40px;
+    height: 40px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}

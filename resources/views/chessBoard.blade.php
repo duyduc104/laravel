@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
 <h1>Bảng Cờ Vua {{ $n }} x {{ $n }}</h1>
