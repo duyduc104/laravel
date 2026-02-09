@@ -5,10 +5,26 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="/" class="nav-link">Home</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Contact</a>
+
+        <li class="nav-item dropdown">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                class="nav-link dropdown-toggle">
+                Quản lý Danh mục
+            </a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                <li>
+                    <a href="{{ route('categories.index') }}" class="dropdown-item">
+                        <i class="far fa-circle nav-icon"></i> Xem danh sách
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('categories.add') }}" class="dropdown-item">
+                        <i class="far fa-circle nav-icon"></i> Thêm mới
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
 

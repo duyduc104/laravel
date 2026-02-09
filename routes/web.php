@@ -7,6 +7,7 @@ use App\Http\Controllers\testController;
 use App\Http\Middleware\checkTimeAccess;
 use App\Http\Middleware\checkAge;
 use App\Http\Controllers\AgeController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
 
@@ -58,4 +59,17 @@ Route::resource('tests', testController::class);
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('/admin', 'index')->name('layouts.admin');
+});
+Route::get('/admin/home', function () {
+    return view('partial.home');
+})->name('home');
+Route::prefix('categories')->group(function () {
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/', 'index')->name('categories.index');
+        Route::get('/add', 'create')->name('categories.add');
+        Route::post('/store', 'store')->name('categories.store');
+        Route::get('/edit/{id}', 'edit')->name('categories.edit');
+        Route::put('/update/{id}', 'update')->name('categories.update');
+        Route::delete('/destroy/{id}', 'destroy')->name('categories.destroy');
+    });
 });

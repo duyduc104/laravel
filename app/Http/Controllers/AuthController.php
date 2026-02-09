@@ -4,20 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     public function checkSignIn(Request $request)
     {
-        $acc = $request->only('email', 'password');
-        // dd($acc);
-        if (Auth::attempt($acc)) {
-            return redirect('/admin')
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+
+            Auth::login($user);
+
+            return redirect('/admin/home')
                 ->with('success', 'Đăng nhập thành công');
         }
-        return redirect()
-            ->back()
+
+        return redirect()->back()
             ->withInput()
             ->with('error', 'Đăng nhập thất bại');
     }

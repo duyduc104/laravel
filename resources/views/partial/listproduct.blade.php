@@ -14,7 +14,7 @@
     <!-- /.card-header -->
     <div class="card-body p-0">
         <div class="table-responsive">
-            <table class="table m-0">
+            {{-- <table class="table m-0">
                 <thead class="bg-light">
                     <tr>
                         <th class="text-center" style="width: 80px;">ID</th>
@@ -66,6 +66,6 @@
         <div class="mt-4">
             {{ $productsRange->links() }}
         </div>
-    </div>
+    </div> --}}
     <!-- /.card-footer -->
 </div>
