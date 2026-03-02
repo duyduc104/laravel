@@ -26,6 +26,9 @@
                 </li>
             </ul>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{ route('product.index') }}" class="nav-link">Danh mục sản phẩm</a>
+        </li>
     </ul>
 
     <!-- Right navbar links -->

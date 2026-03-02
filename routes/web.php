@@ -25,21 +25,32 @@ Route::prefix('auth')->group(function () {
 });
 
 // 2. Nhóm BẮT BUỘC check tuổi và thời gian
-Route::middleware([checkTimeAccess::class, checkAge::class])->group(function () {
-    Route::prefix('product')->group(function () {
-        Route::controller(ProductController::class)->group(function () {
-            Route::get('/', 'indexadmin')->name('product.index');
-            Route::get('/detail/{id?}', 'detail')->name('product.detail');
-            Route::get('/add', 'create')->name('product.add');
-            Route::post('/store', 'store')->name('product.store');
-            Route::get('/edit/{id}', 'edit')->name('product.edit');
-            Route::put('/update/{id}', 'update')->name('product.update');
-        });
+// Route::middleware([checkTimeAccess::class, checkAge::class])->group(function () {
+//     Route::prefix('product')->group(function () {
+//         Route::controller(ProductController::class)->group(function () {
+//             Route::get('/', 'indexadmin')->name('product.index');
+//             Route::get('/detail/{id?}', 'detail')->name('product.detail');
+//             Route::get('/add', 'create')->name('product.add');
+//             Route::post('/store', 'store')->name('product.store');
+//             Route::get('/edit/{id}', 'edit')->name('product.edit');
+//             Route::put('/update/{id}', 'update')->name('product.update');
+//         });
+//     });
+// });
+Route::prefix('product')->group(function () {
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/', 'indexadmin')->name('product.index');
+        Route::get('/detail/{id?}', 'detail')->name('product.detail');
+        Route::get('/add', 'create')->name('product.add');
+        Route::post('/store', 'store')->name('product.store');
+        Route::get('/edit/{id}', 'edit')->name('product.edit');
+        Route::put('/update/{id}', 'update')->name('product.update');
+        Route::delete('/destroy/{id}', 'destroy')->name('product.destroy');
     });
 });
 Route::get('/logout', function () {
-    session()->forget(['age']); 
-    return redirect()->route('signIn');   
+    session()->forget(['age']);
+    return redirect()->route('signIn');
 })->name('logout');
 
 Route::get(('/sinhvien/{name?}/{mssv?}'), function ($name = 'Luong Xuan Hieu', $mssv = '123456') {
